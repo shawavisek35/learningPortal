@@ -1,36 +1,31 @@
-const { GoogleSpreadsheet } = require("google-spreadsheet");
-const { promisify } = require("util");
+//requiring modules
+const express = require("express");
+const app = express();
+const morgan = require("morgan");
+const bodyParser = require("body-parser")
+const mongoose = require("mongoose");
 
-const creds = require("./config/client_secret.json");
 
-const doc = new  GoogleSpreadsheet('1_yKS0AoAG4oS2JfDGvFLTyFRfi8wB2bD988qR4qFEUI');
+//Middlewares
+app.use(bodyParser.json());
 
-function printStudent(student) {
-    console.log(`Name : ${student.Name}`);
-    console.log(`Email : ${student.Email}`);
-    console.log(`Comments : ${student.Comments}`);
 
-}
 
-async function accessSpreadsheet() {
-    await doc.useServiceAccountAuth({
-      client_email: creds.client_email,
-      private_key: creds.private_key,
-    });
-  
-    await doc.loadInfo(); // loads document properties and worksheets
-    console.log(doc.title);
-  
-    const sheet = doc.sheetsByIndex[0]; // or use doc.sheetsById[id]
-    console.log(sheet.title);
-    console.log(sheet.rowCount);
-  
-    const rows = await sheet.getRows({
-        offset : 0
-    });
-    
-    rows.forEach(row => {
-        printStudent(row);
-    });
-}
-accessSpreadsheet();
+
+//Connections
+
+const db = require("./config/mongo_keys.js").mongoURI;
+
+mongoose.connect(db , {useNewUrlParser : true , useUnifiedTopology: true})
+.then(()=> console.log("Mongodb Connected....."))
+.catch((err)=> console.log("Error : " , err));
+
+const port = process.env.PORT || 5000;
+app.listen(port, (err)=>{
+    if(!err){
+        console.log(`Server Started on port : ${port}`);
+    }
+    else{
+        console.log("Error : ",err);
+    }
+});
