@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const bcrypt = require("bcryptjs");
 
 const Mentors = require("../../models/mentor.model");
 const Users = require("../../models/user.model");
@@ -29,6 +30,29 @@ router.post("/register",(req,res) => {
         password : password,
         userType : "mentor"
     });
+
+
+    bcrypt.genSalt(10 , (err,salt) => {
+        bcrypt.hash(User.password, salt , (err,hash) => {
+            if(err){
+                console.log(err);
+            }
+            else{
+                User.password = hash;
+                User.save()
+                .then(() => console.log("user created"))
+                .catch(err => console.log(err));
+            }
+        })
+    });
+
+    Mentor.save()
+    .then(() => {
+        res.json({
+            message : "Mentor Created."
+        })
+    })
+    .catch((err) => console.log(err));
 
 
 });

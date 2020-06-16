@@ -48,7 +48,11 @@ router.post("/register",(req,res) => {
     });
 
     Student.save()
-    .then(() => res.json("Student Created"))
+    .then(() => {
+        res.json({
+            message : "Student Created."
+        })
+    })
     .catch((err) => console.log(err));
 
     
