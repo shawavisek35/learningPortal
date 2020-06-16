@@ -4,11 +4,19 @@ const app = express();
 const morgan = require("morgan");
 const bodyParser = require("body-parser")
 const mongoose = require("mongoose");
+const Student = require("./routes/api/student");
+const User = require("./routes/api/users");
+const Mentor = require("./routes/api/mentor");
+const Admin = require("./routes/api/admin");
 
 
 //Middlewares
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-
+app.use("/api/student" , Student);
+// app.use("/api/user",User);
+// app.use("/api/mentor" , Mentor);
+// app.use("/api/admin" , Admin);
 
 
 
