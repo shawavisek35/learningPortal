@@ -14,7 +14,7 @@ const Admin = require("./routes/api/admin");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use("/api/student" , Student);
-// app.use("/api/user",User);
+app.use("/api/user",User);
 app.use("/api/mentor" , Mentor);
 app.use("/api/admin" , Admin);
 
