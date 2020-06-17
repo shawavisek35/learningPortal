@@ -8,16 +8,30 @@ const Student = require("./routes/api/student");
 const User = require("./routes/api/users");
 const Mentor = require("./routes/api/mentor");
 const Admin = require("./routes/api/admin");
+const session = require("express-session");
+const passport = require("passport");
 
 
 //Middlewares
+app.use(morgan("combined"));
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+
+app.use(session ({
+    secret : "noSecret",
+    resave : true,
+    saveUninitialized : true
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
 app.use("/api/student" , Student);
 app.use("/api/user",User);
 app.use("/api/mentor" , Mentor);
 app.use("/api/admin" , Admin);
-
 
 
 //Connections
