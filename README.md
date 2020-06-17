@@ -1,4 +1,3 @@
-# event_forms
-A simple project to manipulate Event forms 
+# Learning Portal
 
 A complete MERN stack project
