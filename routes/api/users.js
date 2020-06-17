@@ -67,8 +67,8 @@ passport.deserializeUser(function(id, done) {
 
 
 route.post('/login',passport.authenticate('local',
-    { successRedirect: console.log("logged in"),
-    failureRedirect: console.log("Unable to log in")
+    { successRedirect: console.log("Starting the server"),
+    failureRedirect: console.log("")
     }),
     function(req,res){
     res.json('Logged in');
