@@ -1,0 +1,31 @@
+.navbar-brand{
+    font-size: 35px !important;
+
+}
+
+.nav-link{
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size : 20px;
+    padding: 1.1rem;
+    color: black !important;
+    font-size: small;
+}
+
+.active .nav-link{
+    background: #4cb8c4; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #4cb8c4, #3cd3ad); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #4cb8c4, #3cd3ad);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.nav-link:hover{
+    background: #4cb8c4; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #4cb8c4, #3cd3ad); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #4cb8c4, #3cd3ad);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}

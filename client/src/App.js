@@ -6,7 +6,7 @@ import Main from "./components/main/main.js";
 function App() {
   return (
     <BrowserRouter>
-      <div className="container">
+      <div className="container-fluid" style={{width: "80%"}}>
         <Main />
       </div>
     </BrowserRouter>
